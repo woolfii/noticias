@@ -1,30 +1,31 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom'
 class Menu extends Component{
     render(){
         return(
             <div>
-                <nav className="navbar navbar-expand-lg navbar-dark bg-primary justify-content-between" >
-                  <a className="navbar-brand " href="#" >DIARIO</a>
+                <nav className="navbar navbar-expand-lg navbar-dark bg-primary justify-content-between">
+                  <Link to="/" className="navbar-brand ">DIARIO</Link>
 
                   <div className="collapse navbar-collapse" id="navbarColor01">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Politica</a>
+                            <Link to="/Politica" className="nav-link">Politica</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Economia</a>
+                            <Link to="/Economia" className="nav-link">Economia</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Deportes</a>
+                            <Link to="/Deportes" className="nav-link">Deportes</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Ciencia y Tec.</a>
+                            <Link to="/Ciencia" className="nav-link">Ciencia y Tec.</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Policial</a>
+                            <Link to="/Policial" className="nav-link">Policial</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Mundo</a>
+                            <Link to="/Mundo" className="nav-link">Mundo </Link>
                         </li>
                     </ul>
                 </div>

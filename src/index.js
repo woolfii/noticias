@@ -14,6 +14,7 @@ app.use(express.json());
 app.use('/api/tasks',require('./routes/tasks.routes'));
 //achivos estaticoos
 app.use(express.static(path.join(__dirname,'public')));
+app.use('/pub',express.static(path.join(__dirname,'public')));
 
 
 app.listen(app.get('port'), ()=> {

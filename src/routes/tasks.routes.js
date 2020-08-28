@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const Task =require('../models/Task');
+const Task = require('../models/Task');
 
 router.get('/',  async (req, res) => {
     const tasks = await Task.find(); 
@@ -9,8 +9,8 @@ router.get('/',  async (req, res) => {
 });
 
 router.post('/', async (req, res) =>{
-   const{title, description} = req.body;
-   const task= new Task({title,description});
+   const{titulo, subtitulo, fecha, etiquetas, genero} = req.body;
+   const task = new Task({titulo, subtitulo, fecha, etiquetas, genero});
    await task.save();
    res.json('recivido')
 });
