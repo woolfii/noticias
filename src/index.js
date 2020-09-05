@@ -12,9 +12,11 @@ app.use(morgan('dev'));
 app.use(express.json());
 //Rutas
 app.use('/api/tasks',require('./routes/tasks.routes'));
+app.use('/api/noticias', require('./routes/noticias.routes'));
+app.use('/api/categoria', require('./routes/categorias.routes'));
+app.use('/api/opinologos', require('./routes/opinologos.routes'));
 //achivos estaticoos
 app.use(express.static(path.join(__dirname,'public')));
-app.use('/pub',express.static(path.join(__dirname,'public')));
 
 
 app.listen(app.get('port'), ()=> {

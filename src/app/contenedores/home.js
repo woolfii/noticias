@@ -1,29 +1,22 @@
 import React, {Component, Fragment} from 'react';
-import { BrowserRouter as Router, Switch, Route, useParams } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 //componenetes
 import Menu from '../componentes/menu'
 import Noticias from './noticias'
-const Task = require('../../models/Task');
+import Noticia from "./noticia"
 
 class App extends Component{
     render(){
         return(
             <Router>    
                 <Menu/>
-                <div className="container p-8">
-                    <Switch>
-                        <Route path="/:categoriaDeNoticias" exact children={<NoticiasContenedor/>} />
-                    </Switch>
-                </div>
+                <Route path="/" exact component={Noticias}/>
+                <Route path="/categoria/:categoriaDeNoticias" component={Noticias}/>
+                <Route path="/noticia/:id" component={Noticia} />
             </Router>
         )
     }
 }
-function NoticiasContenedor() {
-    let { categoriaDeNoticias } = useParams();
-    return (
-      <Noticias categoriaDeNoticias={categoriaDeNoticias}/>
-    );
-  }
+
   
 export default App
