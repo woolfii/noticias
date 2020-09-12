@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import Noticia from '../componentes/noticia';
 import Opinologos from './opinologos'
+import './noticias.css'
 class Noticias extends Component{
 
     constructor(props){
         super(props);
         this.state ={
             noticias:[],
+            opiniones:[],
             categoria:this.props.match.params.categoriaDeNoticias
         };
     }
@@ -18,9 +20,13 @@ class Noticias extends Component{
             this.setState({noticias:peticionJson}); 
         }
         else{
-           const res = await fetch('http://localhost:3000/api/tasks');
+            const res = await fetch('http://localhost:3000/api/tasks');
             const resJSON = await res.json();
-            this.setState({noticias:resJSON}); 
+            
+            let peticionOpinologos = await fetch('http://localhost:3000/api/opinologos');
+            let peticionOpinologosJSON = await peticionOpinologos.json();
+
+            this.setState({noticias:resJSON, opiniones:peticionOpinologosJSON}); 
         }
 
         
@@ -35,12 +41,12 @@ class Noticias extends Component{
         }
     }
     render(){
-        let {noticias} = this.state;
+        let {noticias, opiniones} = this.state;
         return(
-            <div className="row mt-4 ml-1 mr-1">
+            <div className="row mt-4 ml-1 mr-0" >
 
                 <div className="col-md-9 ">
-                    <div className="row">
+                    <div className="row" style={estilo}>
                         {
                         noticias.map(( noticia, i )=>(
                             <Noticia datosNoticia={noticia} key={i}/>
@@ -49,15 +55,32 @@ class Noticias extends Component{
                     </div>
                 </div>
 
-                <div className="col-md-3" >  
-                    <div className="row">
-                        <Opinologos /> 
+                <div  style={estilo} >  
+                    <div className="row" >
+                        <div className="col-md-12">
+                        <div className="list-group ">
+                            <a className="list-group-item list-group-item-action list-group-item-dark ">
+                                ¿Que opinan nuestros expertos sobre?
+                            </a><br/>
+                            {
+                            opiniones.map((opinion, i )=>(
+                             <Opinologos opiniones={opinion} key={i}/>    
+                            ))    
+                            }
+                        </div></div>
                     </div>
                 </div>
                    
-                </div>
+            </div>
               
         )
     }
 }
+
+const estilo = {
+    "maxHeight":"490px",
+    'overflowY': 'auto',
+    'overflowX':'hidden'
+}
+
 export default Noticias
