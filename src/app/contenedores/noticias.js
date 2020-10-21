@@ -17,7 +17,11 @@ class Noticias extends Component{
         if(parametro){
             let peticion = await fetch(`http://localhost:3000/api/categoria/${parametro}`);
             let peticionJson = await peticion.json();
-            this.setState({noticias:peticionJson}); 
+
+            let peticionOpinologos = await fetch(`http://localhost:3000/api/opinologos/${parametro}`);
+            let peticionOpinologosJSON = await peticionOpinologos.json();
+
+            this.setState({noticias:peticionJson, opiniones:peticionOpinologosJSON}); 
         }
         else{
             const res = await fetch('http://localhost:3000/api/tasks');
@@ -37,9 +41,14 @@ class Noticias extends Component{
             let cdn = nextprops.match.params.categoriaDeNoticias;
             let peticion = await fetch(`http://localhost:3000/api/categoria/${cdn}`);
             let peticionJson = await peticion.json();
-            this.setState({noticias:peticionJson, categoria:cdn}); 
+
+            let peticionOpinologos = await fetch(`http://localhost:3000/api/opinologos/${cdn}`);
+            let peticionOpinologosJSON = await peticionOpinologos.json();
+            
+            this.setState({noticias:peticionJson, categoria:cdn, opiniones:peticionOpinologosJSON }); 
         }
     }
+
     render(){
         let {noticias, opiniones} = this.state;
         return(
@@ -58,16 +67,17 @@ class Noticias extends Component{
                 <div  style={estilo} >  
                     <div className="row" >
                         <div className="col-md-12">
-                        <div className="list-group ">
-                            <a className="list-group-item list-group-item-action list-group-item-dark ">
-                                ¿Que opinan nuestros expertos sobre?
-                            </a><br/>
-                            {
-                            opiniones.map((opinion, i )=>(
-                             <Opinologos opiniones={opinion} key={i}/>    
-                            ))    
-                            }
-                        </div></div>
+                            <div className="list-group ">
+                                <a className="list-group-item list-group-item-action list-group-item-dark ">
+                                    ¿Que opinan nuestros expertos sobre?
+                                </a><br/>
+                                {
+                                opiniones.map((opinion, i )=>(
+                                <Opinologos opiniones={opinion} key={i}/>    
+                                ))    
+                                }
+                            </div>
+                        </div>
                     </div>
                 </div>
                    

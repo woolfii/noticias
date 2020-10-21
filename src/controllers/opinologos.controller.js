@@ -27,4 +27,9 @@ controladoOpinologos.postOpinion = async(req, res)=>{
     res.json('opinion registrada');
 }
 
+controladoOpinologos.getOpinologosPorCategoria = async (req, res) => {
+    const opiniones = await OpinologoSchema.find({Genero:req.params.categoria});
+    res.json(opiniones);
+}
+
 module.exports = controladoOpinologos;

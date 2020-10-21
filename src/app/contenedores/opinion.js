@@ -1,21 +1,51 @@
 import React, { Component } from 'react'
+import Commentarios from '../componentes/comments'
 
 export default class opinion extends Component {
     constructor(props){
         super(props);
         this.state ={
-            informacion:{}
+            informacion:{},
+            comentarios:{}
         }
+        this.comentar = this.comentar.bind(this);
     }
 
     async componentDidMount(){
         let parametro = this.props.match.params.id;
         let opinion = await fetch(`http://localhost:3000/api/opinion/${parametro}`)
         let opinionjson = await opinion.json();
-        this.setState({informacion:opinionjson});
+        let coms = await fetch(`http://localhost:3000/api/comentarios/${parametro}`);
+        let comments = await coms.json(coms);
+        this.setState({informacion:opinionjson, comentarios:comments});
     }
+
+    async comentar(){
+        let parametro = this.props.match.params.id;
+        let input = document.getElementById("inp");
+        let txta = document.getElementById("txta");
+        let cuerpo = {
+            autor:input.value,
+            comment:txta.value,
+            idNoticias:parametro
+        }
+        if(input.value != "" && txta.value != "" ){
+            let respons = await fetch('http://localhost:3000/api/comentarios',{
+                method:'POST',
+                headers:{'Content-Type': 'application/json'},
+                body:JSON.stringify(cuerpo)
+            });
+            let response = await respons.json();
+            let coms = await fetch(`http://localhost:3000/api/comentarios/${parametro}`);
+            let comments = await coms.json(coms);
+            input.value = "";
+            txta.value = "";
+            this.setState({comentarios:comments});
+        }
+    }
+
     render() {
-        let{informacion}= this.state;
+        let{informacion,comentarios}= this.state;
         let opin = informacion[0];
         if(opin){
             return(
@@ -42,7 +72,20 @@ export default class opinion extends Component {
                                 “Se cruzó la pandemia, pero el próximo año vamos a concluir la estrategia”, apuntó.
                         </div>
                         <div className="col-md-3">
-                            Aqui van a ir los comentariosAqui van a ir los comentarios
+                            <div style={estiloDeComments}>
+                                <input id="inp" placeholder="Tu nombre" style={estiloComentario}/><br/>
+                                <textarea id="txta" placeholder="Escribe tu comentario" rows="3" style={estiloComentario}/>
+                                <button className="float-right btn btn-primary btn-sm" onClick={this.comentar}> Comentar! </button><br/><br/>
+                                <br/>
+                                <div style={estCajaComentarios}>
+                                    <hr/>
+                                    {
+                                    comentarios.map((comentario,i)=>(
+                                        <Commentarios comentario={comentario} key={i}/> 
+                                    ))
+                                    }  
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -57,4 +100,15 @@ export default class opinion extends Component {
         }
         
     }
+    
+}
+const estCajaComentarios = {
+    "maxHeight":"600px",
+    "overflowY":"auto"
+}
+const estiloComentario = {
+    "width":"100%"
+}
+const estiloDeComments= {
+    "paddingLeft":"0px"
 }

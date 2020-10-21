@@ -1,9 +1,14 @@
 import React from 'react'
 
-export default function Comments() {
+const Comment = ({comentario}) => {
     return (
-        <div>
-            comentarios
+        <div className="text-dark">
+            {comentario.autor} dijo: 
+            <br/>
+            {comentario.comment}
+            <hr/>
         </div>
     )
 }
+export default Comment;
+

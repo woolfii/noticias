@@ -16,6 +16,7 @@ app.use('/api/noticias', require('./routes/noticias.routes'));
 app.use('/api/categoria', require('./routes/categorias.routes'));
 app.use('/api/opinologos', require('./routes/opinologos.routes'));
 app.use('/api/opinion',require('./routes/opinion.routes'));
+app.use('/api/comentarios',require('./routes/comments.routes'));
 //achivos estaticoos
 app.use(express.static(path.join(__dirname,'public')));
 
