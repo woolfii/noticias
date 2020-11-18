@@ -10,25 +10,25 @@ class Menu extends Component{
                   <div className="collapse navbar-collapse" id="navbarColor01">
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
-                            <Link to="/categoria/Politica" className="nav-link">Politica</Link>
+                            <Link to="/categoria/politica" className="nav-link">Politica</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/categoria/Salud" className="nav-link">Salud</Link>
+                            <Link to="/categoria/salud" className="nav-link">Salud</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/categoria/Economia" className="nav-link">Economia</Link>
+                            <Link to="/categoria/economia" className="nav-link">Economia</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/categoria/Deportes" className="nav-link">Deportes</Link>
+                            <Link to="/categoria/deportes" className="nav-link">Deportes</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/categoria/Ciencia" className="nav-link">Ciencia y Tec.</Link>
+                            <Link to="/categoria/ciencia" className="nav-link">Ciencia y Tec.</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/categoria/Policial" className="nav-link">Policial</Link>
+                            <Link to="/categoria/policial" className="nav-link">Policial</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/categoria/Mundo" className="nav-link">Mundo </Link>
+                            <Link to="/categoria/mundo" className="nav-link">Mundo </Link>
                         </li>
                     </ul>
                 </div>

@@ -94,7 +94,9 @@ export default class opinion extends Component {
         else{
            return (
             <div>
-                estas en Opinion 
+                <h1>
+                  !OPS! algo salio mal, ya estamos trabando para arreglarlo...  
+                </h1>
             </div>
           )   
         }

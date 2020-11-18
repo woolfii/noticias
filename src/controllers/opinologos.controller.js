@@ -28,8 +28,15 @@ controladoOpinologos.postOpinion = async(req, res)=>{
 }
 
 controladoOpinologos.getOpinologosPorCategoria = async (req, res) => {
-    const opiniones = await OpinologoSchema.find({Genero:req.params.categoria});
-    res.json(opiniones);
+    let catego = req.params.categoria;
+    if( Number(catego) > -1 ){
+        let opinions = await OpinologoSchema.find().skip(Number(catego)).limit(4);
+        res.json(opinions);
+    }
+    else{
+        const opiniones = await OpinologoSchema.find({Genero:req.params.categoria});
+        res.json(opiniones); 
+    }
 }
 
 module.exports = controladoOpinologos;

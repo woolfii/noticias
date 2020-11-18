@@ -7,7 +7,8 @@ const TaskSchema = new Schema({
     fecha:{type: String, required:true},
     imagen:{type: String, required:true},
     etiquetas:{type: String, required:true},
-    genero:{type: String, required:true}
+    genero:{type: String, required:true},
+    creado:{type:Date, default: Date.now()}
 });
 
 module.exports = mongoose.model('Task', TaskSchema);

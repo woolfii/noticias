@@ -41,6 +41,8 @@ export default class Noticia extends Component {
             let response = await respons.json();
             let coms = await fetch(`http://localhost:3000/api/comentarios/${parametro}`);
             let comments = await coms.json(coms);
+            input.value="";
+            txta.value="";
             this.setState({comentarios:comments});
         }
     }
