@@ -1,8 +1,8 @@
 import React from 'react';
 import {render} from 'react-dom';
  
-import App from './contenedores/home'
+import App from './contenedores/home';
 
-import 'bootswatch/dist/lux/bootstrap.css';
+import '../includes/bootstrap';
 
 render(<App/>, document.getElementById('root'));

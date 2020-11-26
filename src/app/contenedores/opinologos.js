@@ -6,12 +6,12 @@ const Opinologos =({opiniones}) =>  {
             <div >
                 <Link to={`/opinion/${opiniones._id}`}>
 
-                 <a href="#" className="list-group-item list-group-item-action active">
-                    <div className="text-uppercase">
+                 <a href="#" className="list-group-item list-group-item-action bg-dark" style={EstiloTarjeta}>
+                    <div className="text-uppercase text-white ">
                         {opiniones.Titulo}
                     </div>
                 </a>
-                <a href="#" className="list-group-item list-group-item-action">
+                <a href="#" className="list-group-item list-group-item-action" style={EstiloTarjeta}>
                     <div className="row mb-0">
                         <div className="col-md-4">
                             <img src={`http://localhost:3000/IMGopinologos/${opiniones.Imagen}.png`} />
@@ -25,6 +25,10 @@ const Opinologos =({opiniones}) =>  {
                 </Link><br/>
             </div> 
         )
+}
+
+const EstiloTarjeta = {
+    "borderLeft": "black 6px solid"
 }
 
 export default Opinologos

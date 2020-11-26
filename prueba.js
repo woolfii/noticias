@@ -1,65 +1,38 @@
-import React, {Component} from 'react';
-import Noticia from '../componentes/noticia';
-import Opinologos from './opinologos'
-class Noticias extends Component{
-
-    constructor(props){
-        super(props);
-        this.state ={
-            noticias:[]
-        };
-    }
-    async componentDidMount() {
-        const res = await fetch('http://localhost:3000/api/tasks');
-        const resJSON = await res.json();
-        console.log(this.props.match.params.categoriaDeNoticias);
-        this.setState({noticias:resJSON});
-    }
-    
-    async cargarNoticia(parametro){
-        let peticion = await fetch(`http://localhost:3000/api/categoria/${parametro}`);
-        let peticionJson = await peticion.json();
-    }
-
-    render(){
-        let parametro = this.props.match.params.categoriaDeNoticias;
-        if (parametro) {
-            this.cargarNoticia(parametro);
+{
+    noticias.map((noti, i) => {
+        if(i==0){
             return(
-                <div>
-                    aqui va a ir noticia
-                </div>
+                <div className="carousel-item active">
+                    <Link to={`/noticia/${noti._id}`}>
+                    <div className="row">
+                        <div className="col-md-6">
+                            <img src={`http://localhost:3000/img/${noti.imagen}.jpg`} className="rounded" style={estiloImagen}/>
+                        </div>
+                        <div className="col-md-6 text-white mt-3">
+                            <h3 >{noti.titulo}</h3>
+                            <h5 className="text-justify">{noti.subtitulo}</h5> 
+                        </div>
+                    </div>
+                    </Link>
+                </div>  
             )
         }
-        else{  
-            let {noticias} = this.state;
+        else{
             return(
-                <div className="row mt-4 ml-1 mr-1">
-
-                    <div className="col-md-9 ">
-                        <div className="row">
-                         {
-                            noticias.map(( noticia, i )=>(
-                                <Noticia datosNoticia={noticia} key={i}/>
-                            )
-
-                        )}   
+                <div className="carousel-item">
+                    <Link to={`/noticia/${noti._id}`}>
+                    <div className="row">
+                        <div className="col-md-6">
+                            <img src={`http://localhost:3000/img/${noti.imagen}.jpg`} className="rounded" style={estiloImagen}/>
                         </div>
-                        
-                    </div>
-
-                    <div className="col-md-3" >  
-                        <div className="row">
-                            <Opinologos /> 
+                        <div className="col-md-6 text-white mt-3">
+                            <h3 >{noti.titulo}</h3>
+                            <h5 className="text-justify">{noti.subtitulo}</h5> 
                         </div>
                     </div>
-                   
-                </div>
-              
-        )
-
+                    </Link>
+                </div>   
+                )
         }
-      
-    }
+    })
 }
-export default Noticias

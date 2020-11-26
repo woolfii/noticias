@@ -4,7 +4,7 @@ class Menu extends Component{
     render(){
         return(
             <div>
-                <nav className="navbar navbar-expand-lg navbar-dark bg-primary py-2">
+                <nav className="navbar navbar-expand-lg navbar-dark bg-dark py-2">
                   <Link to="/" className="navbar-brand ">DIARIO</Link>
 
                   <div className="collapse navbar-collapse" id="navbarColor01">
@@ -33,8 +33,48 @@ class Menu extends Component{
                     </ul>
                 </div>
                 </nav>
+                <div className="container-fluid" style={estiloCorona}>
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-6 pt-2 text-black">
+                        <h4>CORONAVIRUS EN MEXICO</h4>
+                    </div>
+                    <div className="col-md-6">
+                    <div className="row ">
+                            <div className="col-md-3 text-black text-center">
+                                <h6>CASOS</h6>
+                            </div>
+                            <div className="col-md-3 text-black text-center">
+                                <h6>RECUPERADOS</h6>
+                            </div>
+                            <div className="col-md-3 text-danger text-center">
+                                <h6>MUERTOS</h6>
+                            </div>
+                        </div>
+                        <div className="row mt-n1 mb-n1">
+                            <div className="col-md-3 text-center">
+                                <h6>1.06 M</h6>
+                            </div>
+                            <div className="col-md-3 text-center">
+                                <h6>792 k</h6>
+                            </div>
+                            <div className="col-md-3 text-center">
+                                <h6>103 k</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
             </div>
         )
     }
+}
+
+const estiloCorona = {
+    'backgroundColor':'orange',
+    "borderBottom": "black 2px solid",
+    "borderTop": "black 2px solid"
+    
 }
 export default Menu
